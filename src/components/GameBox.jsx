@@ -59,26 +59,36 @@ const GameBox = () => {
         }
     
     }
+    const players=[
+        {
+            name:"You",
+            score:player1Score,
+            choice:player1Choice,
+        },
+        {
+            name:"Bot",
+            score:player2Score,
+            choice:player2Choice
+        }
+    ]
 
     return (
         <Box>
             <h1>Stone Paper Scissor</h1>
             <div className='players'>
-                <PlayerBox>
-                    <h2>Player 1</h2>
-                    <h3>Score: {player1Score}</h3>
-                    <div className="img-container">
-                        <img src={player1Choice} className='player-img' alt="" />
-                    </div>
-                </PlayerBox>
-                <PlayerBox>
-                    <h2>Player 2</h2>
-                    <h3>Score: {player2Score}</h3>
-                    <div className="img-container">
-                    <img src={player2Choice} className='player-img' alt="" />
-                    </div>
-                </PlayerBox>
+                {
+                    players.map((player, index) => (
+                        <PlayerBox key={index}>
+                            <h2>{player.name}</h2>
+                            <h3>Score: {player.score}</h3>
+                            <div className="img-container">
+                                <img src={player.choice} className='player-img' alt="" />
+                            </div>
+                        </PlayerBox>
+                    ))
+                }
             </div>
+
             <div className='result'  >{result}</div>
             <Options play={play} />
         </Box>
